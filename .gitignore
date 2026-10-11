@@ -21,21 +21,42 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
-# debug
+# debug & logs
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+*.log
 
-# macOS
+# macOS / Windows / Linux
 .DS_Store
 *.pem
+Thumbs.db
 
 # local env files
+.env
+.env.*
+!.env.example
 .env*.local
 
 # typescript
 *.tsbuildinfo
 
-# generated native folders
+# SQLite / Local Databases
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+
+# Build outputs & binaries
+*.apk
+*.aab
+*.ipa
+
+# generated native folders (Continuous Native Generation)
 /ios
 /android

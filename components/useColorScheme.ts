@@ -1,6 +1,18 @@
-import { useColorScheme as useColorSchemeCore } from 'react-native';
+import { useEffect } from 'react';
+import { useColorScheme as useNativeWindColorScheme } from 'nativewind';
+import { useThemeStore } from '@/store/themeStore';
 
 export const useColorScheme = () => {
-  const coreScheme = useColorSchemeCore();
-  return coreScheme === 'unspecified' ? 'light' : coreScheme;
+  const { colorScheme: nativeWindScheme, setColorScheme: setNativeWindScheme } = useNativeWindColorScheme();
+  const theme = useThemeStore((state) => state.colorScheme);
+  const isHydrated = useThemeStore((state) => state.isHydrated);
+
+  useEffect(() => {
+    if (isHydrated && nativeWindScheme !== theme) {
+      setNativeWindScheme(theme);
+    }
+  }, [theme, isHydrated, nativeWindScheme, setNativeWindScheme]);
+
+  return theme;
 };
+
